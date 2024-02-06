@@ -4,7 +4,7 @@
 
 .outer-div {
   margin: 5px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .article-header {
@@ -15,10 +15,23 @@
 .header {
   display: flex;
   justify-content: flex-start;
+  padding: 5px;
+}
+
+.header-div {
+  border-radius: 20px;
+  background-color: #6366F1;
+  color: white
 }
 
 .load {
   display: flex;
   margin: 5px;
   justify-content: center;
+}
+
+.comment-card-outer-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

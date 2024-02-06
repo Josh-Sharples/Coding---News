@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { fetchArticlesByTopic } from "../api calls/ArticleAPIs";
 import { LoadingContext } from "./LoadingContext";
 import EachArticleDisplay from "./EachArticleDisplay";
-import Nav from "./Nav";
+import Loading from "./Loading";
 
 export default function ArticleDisplay({ filterTopic }) {
   const [articleDisplay, setArticleDisplay] = useState([]);
@@ -23,14 +23,7 @@ export default function ArticleDisplay({ filterTopic }) {
   }, [filterTopic]);
 
   if (!isLoading) {
-    return (
-      <div className="load">
-        <span className="loading loading-dots loading-xs load"></span>
-        <span className="loading loading-dots loading-sm load"></span>
-        <span className="loading loading-dots loading-md load"></span>
-        <span className="loading loading-dots loading-lg load"></span>
-      </div>
-    );
+    return <Loading/>
   }
 
   return (

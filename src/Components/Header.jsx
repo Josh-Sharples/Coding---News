@@ -1,5 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
-    <h1 className="bg-gray-200 header">Coding News</h1>
+    <div className="header-div text-lg border rounded-md p-2 ml-1 my-3 mx-1">
+    <Link to={'/'} className="header">🏠 Coding News</Link>
+    </div>
   )
 }

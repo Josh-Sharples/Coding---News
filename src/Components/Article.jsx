@@ -3,6 +3,8 @@ import { fetchArticlesById } from "../api calls/ArticleAPIs";
 import { LoadingContext } from "./LoadingContext";
 import EachArticleDisplay from "./EachArticleDisplay";
 import { useParams } from "react-router";
+import Loading from "./Loading";
+import Comments from "./Comments";
 
 export default function Article() {
   const [article, setArticle] = useState({});
@@ -17,15 +19,13 @@ export default function Article() {
   }, [articleId]);
 
   if (!isLoading) {
-    return (
-      <div className="load">
-        <span className="loading loading-dots loading-xs load"></span>
-        <span className="loading loading-dots loading-sm load"></span>
-        <span className="loading loading-dots loading-md load"></span>
-        <span className="loading loading-dots loading-lg load"></span>
-      </div>
-    );
+    return <Loading/>
   }
 
-  return <EachArticleDisplay article={article} />;
+  return (
+    <>
+    <EachArticleDisplay article={article} />
+    <Comments article={article}/>
+    </>
+  )
 }
