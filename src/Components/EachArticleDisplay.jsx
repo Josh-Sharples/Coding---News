@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 export default function EachArticleDisplay({article}) {
   return (
     <div key={article.article_id} className="outer-div">
-    <Link to={`articles/${article.article_id}`}>
+    <Link to={`/articles/${article.article_id}`}>
     <div className="group relative">
-      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+      <div className="w-half bg-white rounded-lg border p-2 my-4 mx-0">
         <img
           src={article.article_img_url}
+          alt={`Article on ${article.title}`}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>
-      <div className="mt-4 flex justify-between">
+      <div className="w-half bg-white rounded-lg border p-2 my-4 mx-0">
         <div>
           <h3 className="card-title">
               <span aria-hidden="true" className="absolute inset-0" />

@@ -11,3 +11,7 @@ export const fetchArticlesByTopic = (filteredTopic = '') => {
 export const fetchArticlesById = (articleId = '') => {
   return articleAPI.get(`/articles/${articleId}`)
 }
+
+export const fetchCommentsById = (articleId = '0') => {
+  return articleAPI.get(`/articles/${articleId}/comments?p=1&limit=5`)
+}
