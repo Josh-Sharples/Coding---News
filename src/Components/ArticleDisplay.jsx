@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { fetchArticlesByTopic } from "../api calls/ArticleAPIs";
 import { LoadingContext } from "./LoadingContext";
 import EachArticleDisplay from "./EachArticleDisplay";
+import Nav from "./Nav";
 
 export default function ArticleDisplay({ filterTopic }) {
   const [articleDisplay, setArticleDisplay] = useState([]);
@@ -40,7 +41,7 @@ export default function ArticleDisplay({ filterTopic }) {
             key={article.article_id}
             article={article}
           />
-        );
+        )
       })}
     </div>
   )
