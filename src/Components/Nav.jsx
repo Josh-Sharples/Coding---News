@@ -9,6 +9,11 @@ export default function Nav() {
     e.preventDefault();
     setFilteredTopic(e.target.text);
   }
+
+  function handleHomePageRoute(e) {
+    e.preventDefault();
+    setFilteredTopic('')
+  }
   
   return (
     <nav>
@@ -29,14 +34,14 @@ export default function Nav() {
         </li>
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">Coding News</a>
+    <a className="btn btn-ghost text-xl" onClick={handleHomePageRoute}>Coding News</a>
   </div>
   <div className="navbar-end">
     <a className="btn">Login</a>
   </div>
   </div>
   <div>
-    <NavLink to="/api/articles" className="text-xl article-header">Articles</NavLink>
+    <h2 to="/api/articles" className="text-xl article-header">Articles</h2>
     <ArticleDisplay filterTopic={filteredTopic}/>
   </div>
   </nav>
