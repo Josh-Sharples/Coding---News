@@ -15,3 +15,11 @@ export const fetchArticlesById = (articleId = '') => {
 export const fetchCommentsById = (articleId = '0') => {
   return articleAPI.get(`/articles/${articleId}/comments?p=1&limit=5`)
 }
+
+export const patchIncArticleVotes = (articleId) => {
+  return articleAPI.patch(`/articles/${articleId}`, { inc_votes: 1 })
+}
+
+export const patchDecArticleVotes = (articleId) => {
+  return articleAPI.patch(`/articles/${articleId}`, { inc_votes: -1 })
+}

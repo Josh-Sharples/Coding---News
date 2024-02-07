@@ -5,26 +5,19 @@ export default function EachArticleDisplay({article}) {
     <div key={article.article_id} className="outer-div">
     <Link to={`/articles/${article.article_id}`}>
     <div className="group relative">
-      <div className="w-half bg-white rounded-lg border p-2 my-4 mx-0">
+      <div className="w-half bg-white rounded-lg border p-2 my-4 mx-0 div-article-img">
         <img
           src={article.article_img_url}
           alt={`Article on ${article.title}`}
-          className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+          className="article-img"
+          // style={{maxWidth: "100%", height: "auto"}}
         />
       </div>
       <div className="w-half bg-white rounded-lg border p-2 my-4 mx-0">
-        <div>
+        <div className="article-card-content">
           <h3 className="card-title">
               <span aria-hidden="true" className="absolute inset-0" />
               {article.title}
-          </h3>
-          <h3 className="text-lg text-black-700">
-              <span aria-hidden="true" className="absolute inset-0" />
-              Topic: {article.topic}
-          </h3>
-          <h3 className="text-m text-gray-700">
-              <span aria-hidden="true" className="absolute inset-0" />
-              {article.body}
           </h3>
           <h3 className="text-lg text-black-700">
               <span aria-hidden="true" className="absolute inset-0" />
@@ -32,7 +25,11 @@ export default function EachArticleDisplay({article}) {
           </h3>
           <h3 className="text-lg text-black-700">
               <span aria-hidden="true" className="absolute inset-0" />
-              Article votes: {article.votes}
+              Topic: {article.topic}
+          </h3>
+          <h3 className="text-m text-gray-700 body">
+              <span aria-hidden="true" className="absolute inset-0" />
+              {article.body}
           </h3>
         </div>
       </div>
