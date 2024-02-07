@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import { fetchArticlesByTopic } from "../api calls/ArticleAPIs";
-import { LoadingContext } from "./LoadingContext";
+import { fetchArticlesByTopic } from "../../APICalls/ArticleAPIs";
+import { LoadingContext } from "../Loading Components/LoadingContext";
 import EachArticleDisplay from "./EachArticleDisplay";
-import Loading from "./Loading";
+import Loading from "../Loading Components/Loading";
 
 export default function ArticleDisplay({ filterTopic }) {
   const [articleDisplay, setArticleDisplay] = useState([]);
@@ -23,19 +23,16 @@ export default function ArticleDisplay({ filterTopic }) {
   }, [filterTopic]);
 
   if (!isLoading) {
-    return <Loading/>
+    return <Loading />;
   }
 
   return (
     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 outer-div">
       {articleDisplay.map((article) => {
         return (
-          <EachArticleDisplay
-            key={article.article_id}
-            article={article}
-          />
-        )
+          <EachArticleDisplay key={article.article_id} article={article} />
+        );
       })}
     </div>
-  )
+  );
 }

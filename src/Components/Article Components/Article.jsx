@@ -1,15 +1,16 @@
 import { useEffect, useState, useContext } from "react";
-import { fetchArticlesById } from "../api calls/ArticleAPIs";
-import { LoadingContext } from "./LoadingContext";
+import { fetchArticlesById } from "../../APICalls/ArticleAPIs";
+import { LoadingContext } from "../Loading Components/LoadingContext";
 import EachArticleDisplay from "./EachArticleDisplay";
 import { useParams } from "react-router";
-import Loading from "./Loading";
-import Comments from "./Comments";
+import Loading from "../Loading Components/Loading";
+import Comments from "../Comment Components/Comments";
+import ArticleVotes from "../Vote Components/ArticleVotes";
 
 export default function Article() {
   const [article, setArticle] = useState({});
   const { isLoading, setIsLoading } = useContext(LoadingContext);
-  const { articleId } = useParams()
+  const { articleId } = useParams();
 
   useEffect(() => {
     fetchArticlesById(articleId).then(({ data }) => {
@@ -19,13 +20,14 @@ export default function Article() {
   }, [articleId]);
 
   if (!isLoading) {
-    return <Loading/>
+    return <Loading />;
   }
 
   return (
     <>
-    <EachArticleDisplay article={article} />
-    <Comments article={article}/>
+      <EachArticleDisplay article={article} />
+      <ArticleVotes article={article} />
+      <Comments article={article} />
     </>
-  )
+  );
 }
