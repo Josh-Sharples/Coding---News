@@ -32,7 +32,7 @@ export default function Comments({ article }) {
       setError(null)
       let newComment = { username: userLogIn.username, body: commentBody, comment_id: uuidv4()}
       setComments([newComment, ...comments])
-      PostComment(article.article_id, userLogIn.username, commentBody) //userLogIn.username
+      PostComment(article.article_id, userLogIn.username, commentBody)
         .catch((err) => {
           console.log(err)
           setError(err)
