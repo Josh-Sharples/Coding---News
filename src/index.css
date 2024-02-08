@@ -74,7 +74,24 @@
   display: flex;
 }
 
-.comment-error {
-  color: red;
+.comment-error-success {
   margin-left: 15px;
+}
+
+.delete-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-spacing {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-card-img-title {
+  display: flex;
+}
+
+.comment-author {
+  margin-left: 10px;
 }
