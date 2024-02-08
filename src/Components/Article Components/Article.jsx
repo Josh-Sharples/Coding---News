@@ -27,7 +27,7 @@ export default function Article() {
     <>
       <EachArticleDisplay article={article} />
       <ArticleVotes article={article} />
-      <Comments article={article} />
+      <Comments article={article}/>
     </>
   );
 }

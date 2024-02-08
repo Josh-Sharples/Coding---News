@@ -23,3 +23,11 @@ export const patchIncArticleVotes = (articleId) => {
 export const patchDecArticleVotes = (articleId) => {
   return articleAPI.patch(`/articles/${articleId}`, { inc_votes: -1 })
 }
+
+export const fetchUsers = () => {
+  return articleAPI.get(`/users`)
+}
+
+export const postCommentApi = (articleId, userLogIn, commentBody) => {
+  return articleAPI.post(`/articles/${articleId}/comments`, { username: userLogIn,  body: commentBody})
+}

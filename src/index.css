@@ -56,3 +56,25 @@
   height: auto;
   border-radius: 20px;
 }
+
+.user-card-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.filter-order-sort-div {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  margin-top: 40px;
+}
+
+.filter-sort-order-inner-div {
+  display: flex;
+}
+
+.comment-error {
+  color: red;
+  margin-left: 15px;
+}
