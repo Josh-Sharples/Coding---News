@@ -4,16 +4,20 @@ import CommentCard from "./CommentCard";
 import PostComment from "./PostComment"
 import { UserContext } from "../User Components/UserContext";
 import { v4 as uuidv4 } from 'uuid';
+import { LoadingContext } from "../Loading Components/LoadingContext";
 
 export default function Comments({ article }) {
   const [comments, setComments] = useState([]);
   const [commentBody, setCommentBody] = useState('')
   const [error, setError] = useState(null)
-  const [textBox, setTextBox] = useState(null)
+  const [successMsg, setSuccessMsg] = useState('')
+  const [postingComment, setPostingComment] = useState(false)
 
   const {userLogIn} = useContext(UserContext)
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
 
   useEffect(() => {
+    setIsLoading(true)
     fetchCommentsById(article.article_id).then(({ data }) => {
       setComments(data);
     });
@@ -23,22 +27,44 @@ export default function Comments({ article }) {
     e.preventDefault()
     setCommentBody(e.target.value)
   }
-
+ 
   function postTheComment(e) {
     e.preventDefault()
     if (!userLogIn || userLogIn.username === undefined) {
-      setError('Must be Logged in to comment')
+      setCommentBody('')
+      setError('* Must be Logged-In to comment *')
+    } else if (commentBody.length <= 0) {
+      setError('* Comment cannot be blank *')
     } else {
       setError(null)
-      let newComment = { username: userLogIn.username, body: commentBody, comment_id: uuidv4()}
+      let newComment = { author: userLogIn.username, body: commentBody, comment_id: uuidv4()}
+      let previousComments = [...comments]
+      setPostingComment(true)
       setComments([newComment, ...comments])
       PostComment(article.article_id, userLogIn.username, commentBody)
+        .then(({data}) => {
+          setIsLoading(true)
+          setSuccessMsg('Comment Posted')
+          newComment.comment_id = data.comment.comment_id
+          setComments([newComment, ...comments])
+          setCommentBody('')
+          setPostingComment(false)
+        })
         .catch((err) => {
-          console.log(err)
           setError(err)
-          setComments(comments.filter(comment => comment !== newComment))
+          setComments(previousComments)
+          setPostingComment(false)
         })
     }
+  }
+
+  if (!isLoading) {
+    return <Loading />;
+  }
+
+  function deleteTheComment(comment_id) {
+    const updatedComments = comments.filter(comment => comment.comment_id !== comment_id);
+    setComments(updatedComments);
   }
 
   return (
@@ -47,7 +73,7 @@ export default function Comments({ article }) {
       {comments.map((comment) => {
         return (
           <div key={comment.comment_id}>
-            <CommentCard comment={comment} />
+            <CommentCard comment={comment} deleteTheComment={deleteTheComment}/>
           </div>
         );
       })}
@@ -57,16 +83,18 @@ export default function Comments({ article }) {
           name="body"
           placeholder="Type Your Comment"
           required
+          value={commentBody}
           onChange={handleComment}
         ></textarea>
       </div>
-      <h1 className="comment-error">{error ? `${error}` : null}</h1>
+      <h1 className="comment-error-success">{error ? `${error}` : `${successMsg}`}</h1>
       <div className="w-full flex justify-end px-3">
         <input
           type="submit"
           className="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500 btn"
           value="Post Comment"
           onClick={postTheComment}
+          disabled={postingComment}
         />
       </div>
     </div>

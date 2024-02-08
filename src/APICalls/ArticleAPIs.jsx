@@ -31,3 +31,7 @@ export const fetchUsers = () => {
 export const postCommentApi = (articleId, userLogIn, commentBody) => {
   return articleAPI.post(`/articles/${articleId}/comments`, { username: userLogIn,  body: commentBody})
 }
+
+export const deleteCommentApi = (comment_id) => {
+  return articleAPI.delete(`/comments/${comment_id}`)
+}
