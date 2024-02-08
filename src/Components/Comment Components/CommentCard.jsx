@@ -1,6 +1,11 @@
 import moment from "moment"
+import { useContext } from "react"
+import { UserContext } from "../User Components/UserContext"
 
-export default function CommentCard({comment, user}) {
+export default function CommentCard({comment}) {
+
+  const {userLogIn} = useContext(UserContext)
+
   return (
     <>
       <div className="flex flex-col">
@@ -8,6 +13,7 @@ export default function CommentCard({comment, user}) {
           <div className="flex gap-3 items-center">
             <img
                 alt={`${comment.author}'s profile picture`}
+                src={userLogIn.avatar_url}
                 className="object-cover w-8 h-8 rounded-full 
                 border-2 border-indigo-400  shadow-indigo-400
                 "/>

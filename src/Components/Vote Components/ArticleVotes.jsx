@@ -6,21 +6,39 @@ import {
 
 export default function ArticleVotes({ article }) {
   const [articleVotes, setArticleVotes] = useState(article.votes);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null)
   
   useEffect(() => {
     setArticleVotes(article.votes)
   }, [article.votes])
 
   function handleIncVotes(e) {
+    if (hasVoted) return 
     e.preventDefault();
     setArticleVotes((currentVote) => currentVote + 1);
     patchIncArticleVotes(article.article_id)
+      .then(() => {
+        setHasVoted(true)
+      })
+      .catch(({response}) => {
+        setErrorMsg(response.data.msg)
+        setArticleVotes((currentVote) => currentVote - 1)
+      })
   }
 
   function handleDecVotes(e) {
+    if (hasVoted) return 
     e.preventDefault();
     setArticleVotes((currentVote) => currentVote - 1);
     patchDecArticleVotes(article.article_id)
+      .then(() => {
+        setHasVoted(true)
+      })
+      .catch(({response}) => {
+        setErrorMsg(response.data.msg)
+        setArticleVotes((currentVote) => currentVote + 1)
+      })
   }
 
   return (
@@ -65,6 +83,8 @@ export default function ArticleVotes({ article }) {
           />
         </svg>
       </button>
+      <br></br>
+      <h2>{hasVoted ? 'Thanks for voting!' : null}</h2>
     </div>
   );
 }
