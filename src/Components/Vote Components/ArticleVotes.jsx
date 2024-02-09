@@ -8,6 +8,7 @@ export default function ArticleVotes({ article }) {
   const [articleVotes, setArticleVotes] = useState(article.votes);
   const [hasVoted, setHasVoted] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null)
+  const [disableBtn, setDisableBtn] = useState(false)
   
   useEffect(() => {
     setArticleVotes(article.votes)
@@ -16,9 +17,11 @@ export default function ArticleVotes({ article }) {
   function handleIncVotes(e) {
     if (hasVoted) return 
     e.preventDefault();
+    setDisableBtn(true)
     setArticleVotes((currentVote) => currentVote + 1);
     patchIncArticleVotes(article.article_id)
       .then(() => {
+        setDisableBtn(false)
         setHasVoted(true)
       })
       .catch(({response}) => {
@@ -30,9 +33,11 @@ export default function ArticleVotes({ article }) {
   function handleDecVotes(e) {
     if (hasVoted) return 
     e.preventDefault();
+    setDisableBtn(true)
     setArticleVotes((currentVote) => currentVote - 1);
     patchDecArticleVotes(article.article_id)
       .then(() => {
+        setDisableBtn(false)
         setHasVoted(true)
       })
       .catch(({response}) => {
@@ -46,6 +51,7 @@ export default function ArticleVotes({ article }) {
       <h1>Article Votes</h1>
       <button
         onClick={handleIncVotes}
+        disabled={disableBtn}
         className="p-2 border rounded-full hover:bg-gray-100"
       >
         <svg
@@ -66,6 +72,7 @@ export default function ArticleVotes({ article }) {
       <span className="text-2xl font-bold">{articleVotes}</span>
       <button
         onClick={handleDecVotes}
+        disabled={disableBtn}
         className="p-2 border rounded-full hover:bg-gray-100"
       >
         <svg
@@ -84,6 +91,7 @@ export default function ArticleVotes({ article }) {
         </svg>
       </button>
       <br></br>
+      <h2>{errorMsg ? `${errorMsg}` : null}</h2>
       <h2>{hasVoted ? 'Thanks for voting!' : null}</h2>
     </div>
   );
