@@ -11,12 +11,17 @@ export default function Article() {
   const [article, setArticle] = useState({});
   const { isLoading, setIsLoading } = useContext(LoadingContext);
   const { articleId } = useParams();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchArticlesById(articleId).then(({ data }) => {
-      setIsLoading(true);
       setArticle(data.article);
-    });
+    })
+    .catch((err) => {
+      setIsLoading(true);
+      setError("Article ID not found");
+    })
   }, [articleId]);
 
   if (!isLoading) {
@@ -25,9 +30,13 @@ export default function Article() {
 
   return (
     <>
+      {error ? <h1 className="article-id-error">{`${error}`}</h1> :
+      <>
       <EachArticleDisplay article={article} />
       <ArticleVotes article={article} />
       <Comments article={article}/>
+      </>
+      }
     </>
   );
 }

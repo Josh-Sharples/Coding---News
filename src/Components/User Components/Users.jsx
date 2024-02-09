@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import UserCard from "./UserCard";
 import { fetchUsers } from "../../APICalls/ArticleAPIs";
+import { LoadingContext } from "../Loading Components/LoadingContext";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
 
+  const { isLoading, setIsLoading } = useContext(LoadingContext);
+
   useEffect(() => {
     fetchUsers().then(({ data }) => {
+      setIsLoading(true)
       setUsers(data);
     });
   }, []);
+
+  if (!isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
