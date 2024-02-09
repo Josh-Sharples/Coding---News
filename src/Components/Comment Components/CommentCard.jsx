@@ -24,7 +24,6 @@ export default function CommentCard({comment, deleteTheComment}) {
               {comment.author}
             </h3>
             <h3 className="text-sm">
-              
               {moment(comment.created_at).utc().format('DD-MM-YYYY')}
             </h3>
             </div>

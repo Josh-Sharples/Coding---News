@@ -17,7 +17,6 @@ function App() {
           <Routes>
             <Route exact path="/" element={<ArticleDisplay />} />
             <Route exact path="/articles" element={<ArticleDisplay />} />
-            <Route exact path="/articles" element={<ArticleDisplay />} />
             <Route exact path="articles/:articleId" element={<Article />} />
             <Route exact path="users" element={<Users />} />
           </Routes>
