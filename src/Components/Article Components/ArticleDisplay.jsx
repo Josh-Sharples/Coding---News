@@ -11,14 +11,19 @@ export default function ArticleDisplay() {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const filterByQuery = searchParams.get("topic")
- 
+  const sortByQuery = searchParams.get("sort_by")
+  const orderByQuery = searchParams.get("order")
+
+  const sortBy = sortByQuery !== null ? sortByQuery : 'created_at'
+  const orderBy = orderByQuery !== null ? orderByQuery : 'DESC'
+
   useEffect(() => {
     setIsLoading(false)
     const unfilteredArticles = [];
     const filteredArticles = [];
 
-    if (filterByQuery) {
-      fetchArticlesByTopic(filterByQuery).then(({ data }) => {
+    if (filterByQuery || sortBy || orderBy) {
+      fetchArticlesByTopic(filterByQuery, sortBy, orderBy).then(({ data }) => {
         setIsLoading(true);
         filteredArticles.push(...data.articles);
         setArticleDisplay(data.articles);
@@ -30,7 +35,7 @@ export default function ArticleDisplay() {
         setArticleDisplay(data.articles);
       });
     }
-  }, [filterByQuery]);
+  }, [filterByQuery, sortByQuery, orderByQuery]);
 
   if (!isLoading) {
     return <Loading />;
@@ -65,22 +70,22 @@ export default function ArticleDisplay() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
             >
               <li>
-                <Link to="/articles" >Reset</Link>
+                <Link to="/articles">Reset</Link>
                 <ul className="p-2">
                   <li>
-                    <Link to="/articles?topic=coding">coding</Link>
+                    <Link to="/articles?topic=coding">Coding</Link>
                   </li>
                   <li>
-                    <Link to="/articles?topic=football">football</Link>
+                    <Link to="/articles?topic=football">Football</Link>
                   </li>
                   <li>
-                    <Link to="/articles?topic=cooking">cooking</Link>
+                    <Link to="/articles?topic=cooking">Cooking</Link>
                   </li>
                 </ul>
               </li>
             </ul>
           </div>
-          <h1>Filter-by</h1>
+          <h1>Filter</h1>
           </div>
           </div>
           <div>
@@ -107,16 +112,16 @@ export default function ArticleDisplay() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
             >
               <li>
-                <a >Reset</a>
+                <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}` : '/articles'}>Reset</Link>
                 <ul className="p-2">
                   <li>
-                    <a>coding</a>
+                    <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=created_at` : '/articles?sort_by=created_at'}>Date</Link>
                   </li>
                   <li>
-                    <a>football</a>
+                    <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=comment_count` : '/articles?sort_by=comment_count'}>Comment Count</Link>
                   </li>
                   <li>
-                    <a>cooking</a>
+                    <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=votes` : '/articles?sort_by=votes'}>Votes</Link>
                   </li>
                 </ul>
               </li>
@@ -149,16 +154,13 @@ export default function ArticleDisplay() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
             >
               <li>
-                <a >Reset</a>
+                <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=${sortBy}` : `/articles?sort_by=${sortBy}`}>Reset</Link>
                 <ul className="p-2">
                   <li>
-                    <a>coding</a>
+                    <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=votes&order=ASC` : '/articles?sort_by=votes&order=ASC'}>Ascending</Link>
                   </li>
                   <li>
-                    <a>football</a>
-                  </li>
-                  <li>
-                    <a>cooking</a>
+                    <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=votes&order=DESC` : '/articles?sort_by=votes&order=DESC'}>Descending</Link>
                   </li>
                 </ul>
               </li>
