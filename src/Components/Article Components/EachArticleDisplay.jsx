@@ -26,6 +26,14 @@ export default function EachArticleDisplay({article}) {
               <span aria-hidden="true" className="absolute inset-0" />
               Topic: {article.topic}
           </h3>
+          <h3 className="text-lg text-black-700">
+              <span aria-hidden="true" className="absolute inset-0" />
+              Article votes: {article.votes}
+          </h3>
+          <h3 className="text-lg text-black-700">
+              <span aria-hidden="true" className="absolute inset-0" />
+              Comment count: {article.comment_count}
+          </h3>
           <h3 className="text-m text-gray-700 body">
               <span aria-hidden="true" className="absolute inset-0" />
               {article.body}
