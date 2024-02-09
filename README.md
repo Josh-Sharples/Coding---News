@@ -4,7 +4,12 @@
 
 This projet is a repesentative of a reddit-styled article platform. This project uses React.js to create a user friendly platform that can interacted with the hosted backend API, utilising the various endpoints available.
 <br/>
-Within the application, users can log-in, select individual articles to view, vote on individual articles, comment on individual articles and filter all articles via dropdowns located on the home page.
+Within the application, users can perform a variety of tassk such as:
+- Logging-in
+- Select an individual article to view
+- Vote on individual articles
+- Comment on individual articles
+- Filter, sort & order all articles via dropdowns located on the home page.
 <br/>
 This project was built using Javascript, React.js with Vite and libraries such as Tailwind with pluggins such as Daisyui to provide a cleaner UI for improved UX.
 
