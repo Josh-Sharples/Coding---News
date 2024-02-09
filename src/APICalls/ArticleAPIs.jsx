@@ -4,8 +4,11 @@ const articleAPI = axios.create({
   baseURL: 'https://coding-news.onrender.com/api',
 });
 
-export const fetchArticlesByTopic = (filteredTopic = '') => {
-  return articleAPI.get(`/articles?topic=${filteredTopic}`)
+export const fetchArticlesByTopic = (filteredTopic, sortBy, orderBy) => {
+  if(filteredTopic) {
+    return articleAPI.get(`/articles?topic=${filteredTopic}&sort_by=${sortBy}&order=${orderBy}`)
+  }
+  return articleAPI.get(`/articles?sort_by=${sortBy}&order=${orderBy}`)
 }
 
 export const fetchArticlesById = (articleId = '') => {
