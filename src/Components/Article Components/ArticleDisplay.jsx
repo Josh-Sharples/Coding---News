@@ -9,6 +9,7 @@ export default function ArticleDisplay() {
   const [articleDisplay, setArticleDisplay] = useState([]);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
   const [searchParams, setSearchParams] = useSearchParams()
+  const [error, setError] = useState(null)
 
   const filterByQuery = searchParams.get("topic")
   const sortByQuery = searchParams.get("sort_by")
@@ -27,7 +28,11 @@ export default function ArticleDisplay() {
         setIsLoading(true);
         filteredArticles.push(...data.articles);
         setArticleDisplay(data.articles);
-      });
+      })
+      .catch((err) => {
+        setIsLoading(true)
+        setError("Topic not found!")
+      })
     } else {
       fetchArticlesByTopic().then(({ data }) => {
         setIsLoading(true);
@@ -42,6 +47,8 @@ export default function ArticleDisplay() {
   }
 
   return (
+    <>
+    {error ? <h1 className="topic-error">{`${error}`}</h1> :
     <>
     <h3 className="text-xl article-header">Articles</h3>
       <div>
@@ -179,6 +186,8 @@ export default function ArticleDisplay() {
         );
       })}
     </div>
+    </>
+    }
     </>
   );
 }

@@ -10,7 +10,6 @@ export default function EachArticleDisplay({article}) {
           src={article.article_img_url}
           alt={`Article on ${article.title}`}
           className="article-img"
-          // style={{maxWidth: "100%", height: "auto"}}
         />
       </div>
       <div className="w-half bg-white rounded-lg border p-2 my-4 mx-0">

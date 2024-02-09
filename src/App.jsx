@@ -17,13 +17,23 @@ function App() {
           <Routes>
             <Route exact path="/" element={<ArticleDisplay />} />
             <Route exact path="/articles" element={<ArticleDisplay />} />
-            <Route exact path="articles/:articleId" element={<Article />} />
-            <Route exact path="users" element={<Users />} />
+            <Route exact path="/articles/:articleId" element={<Article />} />
+            <Route exact path="/users" element={<Users />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </UserProvider>
       </LoadingProvider>
     </>
   );
+}
+
+function NotFound() {
+  return (
+    <div className="page-not-found-div">
+      <h1 className="page-not-found">404</h1>
+      <p className="page-not-found">Error: Page not found!</p>
+    </div>
+  )
 }
 
 export default App;

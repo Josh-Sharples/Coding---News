@@ -96,3 +96,18 @@
 .comment-author {
   margin-left: 10px;
 }
+
+.article-id-error, .topic-error{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
+}
+
+.page-not-found-div {
+  margin-top: 100px;
+}
+
+.page-not-found {
+  display: flex;
+  justify-content: center;
+}
