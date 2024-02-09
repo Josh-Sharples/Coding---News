@@ -20,11 +20,15 @@ You can access the hosted CODING NEWS API on Render here: https://coding-news.on
 ```
 git clone https://github.com/Josh-Sharples/Coding---News.git
 ```
-2. You will need to install all the dependencies listed within the package.json file. This can be done using:
+2. cd into the local directory using
+```
+cd Coding\ -\ News/
+```
+3. You will need to install all the dependencies listed within the package.json file. This can be done using:
 ```
 npm install
 ```
-3. To run the App locally paste the below into the CLI:
+4. To run the App locally paste the below into the CLI:
 ```
 npm run dev
 ```
