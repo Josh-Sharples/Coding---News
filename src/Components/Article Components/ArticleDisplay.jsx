@@ -3,35 +3,34 @@ import { fetchArticlesByTopic } from "../../APICalls/ArticleAPIs";
 import { LoadingContext } from "../Loading Components/LoadingContext";
 import EachArticleDisplay from "./EachArticleDisplay";
 import Loading from "../Loading Components/Loading";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function ArticleDisplay() {
   const [articleDisplay, setArticleDisplay] = useState([]);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
-  const [filteredTopic, setFilteredTopic] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams()
 
-  function handleFilterTopic(e) {
-    e.preventDefault();
-    setFilteredTopic(e.target.text);
-  }
-
-    function handleHomePageRoute(e) {
-    e.preventDefault();
-    setFilteredTopic("");
-  }
-
+  const filterByQuery = searchParams.get("topic")
+ 
   useEffect(() => {
-    if (filteredTopic) {
-      fetchArticlesByTopic(filteredTopic).then(({ data }) => {
+    setIsLoading(false)
+    const unfilteredArticles = [];
+    const filteredArticles = [];
+
+    if (filterByQuery) {
+      fetchArticlesByTopic(filterByQuery).then(({ data }) => {
         setIsLoading(true);
+        filteredArticles.push(...data.articles);
         setArticleDisplay(data.articles);
       });
     } else {
       fetchArticlesByTopic().then(({ data }) => {
         setIsLoading(true);
+        unfilteredArticles.push(...data.articles);
         setArticleDisplay(data.articles);
       });
     }
-  }, [filteredTopic]);
+  }, [filterByQuery]);
 
   if (!isLoading) {
     return <Loading />;
@@ -66,16 +65,16 @@ export default function ArticleDisplay() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
             >
               <li>
-                <a onClick={handleHomePageRoute}>Reset</a>
+                <Link to="/articles" >Reset</Link>
                 <ul className="p-2">
-                  <li onClick={handleFilterTopic}>
-                    <a>coding</a>
+                  <li>
+                    <Link to="/articles?topic=coding">coding</Link>
                   </li>
-                  <li onClick={handleFilterTopic}>
-                    <a>football</a>
+                  <li>
+                    <Link to="/articles?topic=football">football</Link>
                   </li>
-                  <li onClick={handleFilterTopic}>
-                    <a>cooking</a>
+                  <li>
+                    <Link to="/articles?topic=cooking">cooking</Link>
                   </li>
                 </ul>
               </li>
@@ -108,15 +107,15 @@ export default function ArticleDisplay() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
             >
               <li>
-                <a onClick={handleHomePageRoute}>Reset</a>
+                <a >Reset</a>
                 <ul className="p-2">
-                  <li onClick={handleFilterTopic}>
+                  <li>
                     <a>coding</a>
                   </li>
-                  <li onClick={handleFilterTopic}>
+                  <li>
                     <a>football</a>
                   </li>
-                  <li onClick={handleFilterTopic}>
+                  <li>
                     <a>cooking</a>
                   </li>
                 </ul>
@@ -150,15 +149,15 @@ export default function ArticleDisplay() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
             >
               <li>
-                <a onClick={handleHomePageRoute}>Reset</a>
+                <a >Reset</a>
                 <ul className="p-2">
-                  <li onClick={handleFilterTopic}>
+                  <li>
                     <a>coding</a>
                   </li>
-                  <li onClick={handleFilterTopic}>
+                  <li>
                     <a>football</a>
                   </li>
-                  <li onClick={handleFilterTopic}>
+                  <li>
                     <a>cooking</a>
                   </li>
                 </ul>
