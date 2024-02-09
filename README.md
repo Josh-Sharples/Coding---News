@@ -1,8 +1,35 @@
-# React + Vite
+# WELCOME TO CODING NEWS! 📰 🗞
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2>Project Summary:</h2>
 
-Currently, two official plugins are available:
+This projet is a repesentative of a reddit-styled article platform. This project uses React.js to create a user friendly platform that can interacted with the hosted backend API, utilising the various endpoints available.
+Within the application, users can log-in, select individual articles to view, vote on individual articles, comment on individual articles and filter all articles via dropdowns located on the home page.
+This project was built using Javascript, React.js with Vite and libraries such as Tailwind with pluggins such as Daisyui to provide a cleaner UI for improved UX.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h3>Frontend</h3>
+You can access the hosted version on Netlify here: https://coding-news.netlify.app/
+
+<h3>Backend</h3>
+You can access the hosted CODING NEWS API on Render here: https://coding-news.onrender.com/api
+
+-------------------------------------------------------------
+
+<h2>Set-up Instructions:</h2>
+
+1. Fork & Clone the repo using
+```
+git clone https://github.com/Josh-Sharples/Coding---News.git
+```
+2. You will need to install all the dependencies listed within the package.json file. This can be done using:
+```
+npm install
+```
+3. To run the App locally paste the below into the CLI:
+```
+npm run dev
+```
+-------------------------------------------------------------
+
+<h2>Minimum requirements:</h2>
+
+Minimum Version of node: v21.6.1
