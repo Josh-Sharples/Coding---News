@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import moment from "moment"
 
 export default function EachArticleDisplay({article}) {
   return (
@@ -20,6 +21,10 @@ export default function EachArticleDisplay({article}) {
           </h3>
           <h3 className="text-lg text-black-700">
               <span aria-hidden="true" className="absolute inset-0" />
+              Date: {moment(article.created_at).utc().format('DD-MM-YYYY')}
+          </h3>
+          <h3 className="text-lg text-black-700">
+              <span aria-hidden="true" className="absolute inset-0" />
               Author: {article.author}
           </h3>
           <h3 className="text-lg text-black-700">
@@ -28,11 +33,11 @@ export default function EachArticleDisplay({article}) {
           </h3>
           <h3 className="text-lg text-black-700">
               <span aria-hidden="true" className="absolute inset-0" />
-              Article votes: {article.votes}
+              Votes: {article.votes}
           </h3>
           <h3 className="text-lg text-black-700">
               <span aria-hidden="true" className="absolute inset-0" />
-              Comment count: {article.comment_count}
+              Comments: {article.comment_count}
           </h3>
           <h3 className="text-m text-gray-700 body">
               <span aria-hidden="true" className="absolute inset-0" />

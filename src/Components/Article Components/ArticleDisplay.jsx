@@ -74,7 +74,7 @@ export default function ArticleDisplay() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-35 bg-indigo-100"
             >
               <li>
                 <Link to="/articles">Reset</Link>
@@ -116,7 +116,7 @@ export default function ArticleDisplay() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-35 bg-indigo-100"
             >
               <li>
                 <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}` : '/articles'}>Reset</Link>
@@ -125,7 +125,7 @@ export default function ArticleDisplay() {
                     <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=created_at` : '/articles?sort_by=created_at'}>Date</Link>
                   </li>
                   <li>
-                    <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=comment_count` : '/articles?sort_by=comment_count'}>Comment Count</Link>
+                    <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=comment_count` : '/articles?sort_by=comment_count'}>Comments</Link>
                   </li>
                   <li>
                     <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=votes` : '/articles?sort_by=votes'}>Votes</Link>
@@ -134,7 +134,7 @@ export default function ArticleDisplay() {
               </li>
             </ul>
           </div>
-          <h1>Sort-by</h1>
+          <h1>Sort</h1>
           </div>
           </div>
           <div>
@@ -158,7 +158,7 @@ export default function ArticleDisplay() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 bg-indigo-100"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-35 bg-indigo-100"
             >
               <li>
                 <Link to={filterByQuery !== null ? `/articles?topic=${filterByQuery}&sort_by=${sortBy}` : `/articles?sort_by=${sortBy}`}>Reset</Link>
@@ -173,7 +173,7 @@ export default function ArticleDisplay() {
               </li>
             </ul>
           </div>
-          <h1>Order-by</h1>
+          <h1>Order</h1>
           </div>
           </div>
         </div>
